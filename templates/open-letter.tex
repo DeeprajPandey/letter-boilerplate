@@ -1,0 +1,128 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[$fontsize$, a4paper]{article}
+\usepackage{fontspec}
+
+% LAYOUT
+%--------------------------------
+\usepackage{geometry}
+\geometry{$geometry$}
+
+% No page numbers
+\pagenumbering{gobble}
+
+% Left align
+\usepackage[document]{ragged2e}
+
+% Better section formatting
+\usepackage{titlesec}
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0em}
+  {}
+  [\vspace{0.5em}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries}
+  {}
+  {0em}
+  {}
+  [\vspace{0.5em}]
+
+\titlespacing*{\section}{0pt}{2em}{0.5em}
+\titlespacing*{\subsection}{0pt}{1.5em}{0.25em}
+
+% Trim excessive whitespace before lists
+\usepackage{enumitem}
+\setlist{nolistsep, leftmargin=1.5em}
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage[protrusion=true,final]{microtype}
+
+% Using Crimson Pro - an open source font
+\setmainfont{CrimsonPro}[
+    Path = ./fonts/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    Numbers = OldStyle
+]
+
+\setsansfont{SourceSans3}[
+    Path = ./fonts/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+]
+
+% Custom commands for section headings
+\newcommand{\majorsection}[1]{%
+  \par\vspace{2em}%
+  \noindent{\textbf{#1}}%
+  \par\vspace{0.2em}%
+}
+
+\newcommand{\inlinesection}[1]{%
+  \par\vspace{0.8em}%
+  \noindent\textit{#1}%
+  \par\vspace{0.2em}%
+}
+
+% Modified spacing
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+% % Set paragraph break
+% \setlength{\parskip}{1em}
+% \setlength{\parindent}{0pt}
+
+% Command required by how Pandoc handles the list conversion
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% PDF SETUP
+%--------------------------------
+\usepackage[xetex, bookmarks, colorlinks, breaklinks]{hyperref}
+\hypersetup
+{
+  pdfauthor={$author$},
+  pdfsubject={$subject$},
+  pdftitle={$subject$},
+  colorlinks,breaklinks,
+  filecolor=black,
+  urlcolor=[rgb]{0.117,0.682,0.858},
+  linkcolor=[rgb]{0.117,0.682,0.858},
+  citecolor=[rgb]{0.117,0.682,0.858}
+}
+
+% DOCUMENT
+%--------------------------------
+\begin{document}
+
+\begin{center}
+{\Large\bfseries $subject$}
+\end{center}
+
+\vspace{1em}
+
+$body$
+
+\vspace{2em}
+
+\begin{FlushRight}
+$author$
+
+$for(from)$
+$from$\\
+$endfor$
+\end{FlushRight}
+
+\end{document}
